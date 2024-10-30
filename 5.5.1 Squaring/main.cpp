@@ -2,44 +2,48 @@
 #include<vector>
 
 template <class T>
-void sqr(T& a)
+T my_sqrt(T a)
 {
 	a *= a;
+	return a;
 }
 
 template<class T>
-void sqr(std::vector<T>& a)
+std::vector<T> my_sqrt(std::vector<T> a)
 {
 	for (int i = 0; i < a.size(); ++i)
 	{
-		sqr(a[i]);
+		a[i] = my_sqrt(a[i]);
 	}
+	return a;
 }
 
 int main()
 {
-	int b = 4;
-	std::cout << "[IN] " << b << std::endl;
-	sqr(b);
-	std::cout << "[OUT] " << b << std::endl;
+	int a = 5;
+	int b = my_sqrt(a);
+	std::vector<int> v1 = { 2,3,4,5,6,7 };
+	std::vector<int> v2 = my_sqrt(v1);
 
-	std::vector<int> vec {-1, 4, 8};
-	std::cout << "[IN] ";
-	for (const auto & i : vec)
+
+	std::cout << "[IN]: " << a << std::endl;
+	std::cout << "[OUT]: " << b << std::endl;
+	std::cout << "[IN]: ";
+
+	for (const auto& i : v1)
 	{
 		std::cout << i;
-		if (i != vec[vec.size() - 1])
+		if (i != v1[v1.size() - 1])
 		{
 			std::cout << ", ";
 		}
 	}
 	std::cout << std::endl;
-	sqr(vec);
-	std::cout << "[OUT] ";
-	for (const auto& i : vec)
+	std::cout << "[OUT]: ";
+	for (const auto& i : v2)
 	{
 		std::cout << i;
-		if (i != vec[vec.size() - 1])
+		if (i != v2[v2.size() - 1])
 		{
 			std::cout << ", ";
 		}
